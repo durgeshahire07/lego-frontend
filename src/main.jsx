@@ -1,10 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+import { LEGOProvider } from "./context/legoContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LEGOProvider>
+      <App />
+    </LEGOProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

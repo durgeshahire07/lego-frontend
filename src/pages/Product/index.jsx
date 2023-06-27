@@ -1,30 +1,38 @@
 // eslint-disable-next-line no-unused-vars
-import React, { Fragment } from "react";
-import Navbar from "../../components/Navbar";
-import styles from "./index.module.css";
-import Footer from "../../components/Footer";
-import Checkbox from "../../components/Checkbox";
+import React, { Fragment, useContext } from "react";
 
-import Plane from "../../assets/airoplane.png";
-import MrGold from "../../assets/mr-gold.png";
 import { BiCheckShield } from "react-icons/bi";
 import { FiThumbsUp } from "react-icons/fi";
 import { GiTakeMyMoney } from "react-icons/gi";
+
+import { LEGOContext } from "../../context/legoContext";
+
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Checkbox from "../../components/Checkbox";
+
+import MrGold from "../../assets/mr-gold.png";
 import Mint from "../../assets/mint.png";
 import Damaged from "../../assets/damaged.png";
 import VeryGood from "../../assets/very-good.png";
 import GetQuote from "../../assets/get-quote.png";
 
+import styles from "./index.module.css";
+
 const Product = () => {
+  const { legoData } = useContext(LEGOContext);
+
   return (
     <Fragment>
       <Navbar page="product" />
       <div className={styles.product}>
         <div className={styles["product-left"]}>
           <div className={styles.title}>
-            <p>Race Plane 41127</p>
+            <p>
+              {legoData?.name} {legoData?.no?.split("-")[0]}
+            </p>
             <div className={styles["product-img"]}>
-              <img src={Plane} alt="product-img" />
+              <img src={`https:${legoData?.image_url}`} alt="product-img" />
             </div>
             <div className={styles["box-container"]}>
               <div className={`${styles.box} ${styles.blue}`}>
@@ -102,7 +110,7 @@ const Product = () => {
             <div className={`${styles.box} ${styles.green} ${styles.getQuote}`}>
               <p className={styles.title}>Email Address*</p>
               <br />
-              <input type="email" placeholder="Type your email address"/>
+              <input type="email" placeholder="Type your email address" />
               <br />
               <img src={GetQuote} alt="get-quote" />
             </div>
